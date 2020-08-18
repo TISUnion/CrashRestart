@@ -7,7 +7,7 @@ CONFIG_FILE = os.path.join('config', 'CrashRestart.json')
 # MAXIMUM: 3 crashes within 5min
 config = {
 	"MAX_COUNT": 3,
-	"COUNTING_TIME": 300
+	"COUNTING_TIME": 300  # seconds
 }
 default_config = config.copy()
 
