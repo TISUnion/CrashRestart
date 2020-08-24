@@ -13,11 +13,23 @@ default_config = config.copy()
 
 counter = None
 count_start_time = None
+is_crash = False
+
+
+def on_server_startup(server):
+	global is_crash
+	is_crash = False
+
+
+def on_info(server, info):
+	if not info.is_user and info.logging_level == 'ERROR' and info.content.startswith('This crash report has been saved to:'):
+		global is_crash
+		is_crash = True
 
 
 def on_server_stop(server, return_code):
-	global counter, count_start_time
-	if return_code == 0:
+	global counter, count_start_time, is_crash
+	if return_code == 0 and not is_crash:
 		return
 	max_count = config['MAX_COUNT']
 	counting_time = config['COUNTING_TIME']
@@ -36,10 +48,11 @@ def on_server_stop(server, return_code):
 
 
 def on_load(server, old):
-	global counter, count_start_time
+	global counter, count_start_time, is_crash
 	if old is not None:
 		counter = old.counter
 		count_start_time = old.count_start_time
+		is_crash = old.is_crash
 
 	global config
 	try:
