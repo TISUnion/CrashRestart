@@ -4,6 +4,8 @@ It will stop restarting if the server crashes too frequently. By default maximum
 
 The config file is `config/CrashRestart.json`. It will be generated automatically if you forget to create it
 
+Required MCDReorged 0.9.6+
+
 ---------
 
 一个简单的在服务端崩溃后自动重启服务器的插件
@@ -12,3 +14,4 @@ The config file is `config/CrashRestart.json`. It will be generated automaticall
 
 配置文件为`config/CrashRestart.json`，如果你忘了创建它，它会自动生成
 
+需要 MCDReorged 0.9.6+
