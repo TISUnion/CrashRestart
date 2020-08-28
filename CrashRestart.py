@@ -25,6 +25,7 @@ def on_info(server, info):
 	if not info.is_user and info.logging_level == 'ERROR' and info.content.startswith('This crash report has been saved to:'):
 		global is_crash
 		is_crash = True
+		server.logger.info('Crash report creation detected')
 
 
 def on_server_stop(server, return_code):
@@ -33,7 +34,8 @@ def on_server_stop(server, return_code):
 		return
 	max_count = config['MAX_COUNT']
 	counting_time = config['COUNTING_TIME']
-	server.logger.info('Seems like a crash has happened since the return code of the server is {}'.format(return_code))
+	reason = 'the return code of the server is {}'.format(return_code) if return_code != 0 else 'a crash report has been created'
+	server.logger.info('Seems like a crash has happened since {}'.format(reason))
 	current_time = time.time()
 	if count_start_time is not None and current_time - count_start_time <= counting_time:
 		counter += 1
