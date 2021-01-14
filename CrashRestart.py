@@ -1,6 +1,14 @@
 import json
-import time
 import os
+import time
+
+PLUGIN_METADATA = {
+	'id': 'crash_restart',
+	'version': '1.0.0',
+	'name': 'Crash Restart',
+	'author': 'Fallen_Breath',
+	'link': 'https://github.com/MCDReforged/CrashRestart',
+}
 
 CONFIG_FILE = os.path.join('config', 'CrashRestart.json')
 
