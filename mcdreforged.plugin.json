@@ -1,0 +1,12 @@
+{
+	"id": "crash_restart",
+	"version": "1.0.0",
+	"name": "Crash Restart",
+	"description": {
+		"en_us": "Automatically restart the server after the server crashed",
+		"zh_cn": "在服务端崩溃后自动重启服务器的插件"
+	},
+	"author": "Fallen_Breath",
+	"link": "https://github.com/MCDReforged/CrashRestart",
+	"resources": ["LICENSE"]
+}
