@@ -7,6 +7,6 @@
 		"zh_cn": "在服务端崩溃后自动重启服务器的插件"
 	},
 	"author": "Fallen_Breath",
-	"link": "https://github.com/MCDReforged/CrashRestart",
+	"link": "https://github.com/TISUnion/CrashRestart",
 	"resources": ["LICENSE"]
 }
