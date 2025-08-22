@@ -1,5 +1,6 @@
 import os
 import time
+from typing import Optional
 
 from mcdreforged.api.all import *
 
@@ -10,29 +11,32 @@ class Config(Serializable):
 
 
 config: Config
-counter = None
-count_start_time = None
+counter: Optional[int] = None
+count_start_time: Optional[float] = None
 is_crash = False
 PLUGIN_METADATA = ServerInterface.get_instance().as_plugin_server_interface().get_self_metadata()
 CONFIG_FILE = os.path.join('config', 'CrashRestart.json')
 
 
-def on_server_startup(server):
+def on_server_startup(_: PluginServerInterface):
 	global is_crash
 	is_crash = False
 
 
-def on_info(server, info):
+def on_info(server: PluginServerInterface, info: Info):
 	if not info.is_user and info.logging_level == 'ERROR' and info.content.startswith('This crash report has been saved to:'):
 		global is_crash
 		is_crash = True
 		server.logger.info('Crash report creation detected')
 
 
-def on_server_stop(server, return_code):
+def on_server_stop(server: PluginServerInterface, return_code):
 	global counter, count_start_time, is_crash
 	if return_code == 0 and not is_crash:
 		return
+	if server.is_server_running():
+		return
+
 	max_count = config.MAX_COUNT
 	counting_time = config.COUNTING_TIME
 	reason = 'The return code of the server is {}'.format(return_code) if return_code != 0 else 'a crash report has been created'
