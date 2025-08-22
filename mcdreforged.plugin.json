@@ -1,6 +1,6 @@
 {
 	"id": "crash_restart",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"name": "Crash Restart",
 	"description": {
 		"en_us": "Automatically restart the server after the server crashed",
